@@ -18,8 +18,6 @@
   --amber-light: #fef3c7;
   --coral: #c0392b;
   --coral-light: #fdecea;
-  --blue: #1d6fa4;
-  --blue-light: #dbeafe;
   --gray-50: #f9f9f7;
   --gray-100: #f0efe9;
   --gray-200: #e2e1d8;
@@ -68,11 +66,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--gray-200); margin-bottom: 1rem; overflow: hidden; }
 .card-body { padding: 0.5rem 0; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
 
-@media (max-width: 800px) {
-  .three-col { grid-template-columns: 1fr; }
-}
 @media (max-width: 700px) {
   .two-col { grid-template-columns: 1fr; }
   .main { padding: 1rem; }
@@ -91,13 +85,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .task-row:hover .delete-btn,
 .event-row:hover .delete-btn,
 .grocery-row:hover .delete-btn,
-.kid-note:hover .delete-btn { opacity: 1; }
+.kid-note:hover .delete-btn,
+.note-row:hover .delete-btn { opacity: 1; }
 .delete-btn:hover { color: var(--coral); background: var(--coral-light); }
 
 .add-row { display: flex; gap: 8px; padding: 0.75rem 1.25rem; border-top: 1px solid var(--gray-100); align-items: center; flex-wrap: wrap; background: var(--gray-50); }
-.add-row input, .add-row select { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 7px 12px; border: 1px solid var(--gray-200); border-radius: 8px; background: #fff; color: var(--text); outline: none; transition: border-color 0.15s; }
-.add-row input:focus, .add-row select:focus { border-color: var(--green); }
-.add-row input.flex1 { flex: 1; min-width: 120px; }
+.add-row input, .add-row select, .add-row textarea { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 7px 12px; border: 1px solid var(--gray-200); border-radius: 8px; background: #fff; color: var(--text); outline: none; transition: border-color 0.15s; }
+.add-row input:focus, .add-row select:focus, .add-row textarea:focus { border-color: var(--green); }
+.add-row input.flex1, .add-row textarea.flex1 { flex: 1; min-width: 120px; }
 .btn-add { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 8px; border: none; background: var(--green); color: #fff; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
 .btn-add:hover { background: #245c3f; }
 
@@ -121,13 +116,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .meal-name-input:focus { background: var(--gray-50); }
 .meal-name-input::placeholder { color: var(--gray-400); }
 
-/* Grocery store headers */
-.store-header {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 1.25rem 6px;
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; border-bottom: 1px solid var(--gray-100);
-}
+.store-header { display: flex; align-items: center; gap: 8px; padding: 10px 1.25rem 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--gray-100); }
 .store-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .dot-sams { background: #0067a0; }
 .dot-target { background: #cc0000; }
@@ -140,19 +129,23 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .grocery-label { flex: 1; font-size: 14px; }
 .grocery-row.got .grocery-label { text-decoration: line-through; color: var(--gray-400); }
 
-/* store tab pills */
 .store-tabs { display: flex; gap: 6px; padding: 0.75rem 1.25rem 0; flex-wrap: wrap; }
-.store-pill {
-  font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 20px;
-  border: 1.5px solid var(--gray-200); background: none; cursor: pointer;
-  font-family: 'DM Sans', sans-serif; color: var(--gray-600); transition: all 0.15s;
-}
+.store-pill { font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 20px; border: 1.5px solid var(--gray-200); background: none; cursor: pointer; font-family: 'DM Sans', sans-serif; color: var(--gray-600); transition: all 0.15s; }
 .store-pill:hover { border-color: var(--gray-400); color: var(--text); }
 .store-pill.active-sams { background: #0067a0; border-color: #0067a0; color: #fff; }
 .store-pill.active-target { background: #cc0000; border-color: #cc0000; color: #fff; }
 .store-pill.active-walmart { background: #0071ce; border-color: #0071ce; color: #fff; }
 .store-panel { display: none; }
 .store-panel.active { display: block; }
+
+/* Notes */
+.note-row { display: flex; align-items: flex-start; gap: 10px; padding: 12px 1.25rem; border-bottom: 1px solid var(--gray-100); transition: background 0.1s; }
+.note-row:last-child { border-bottom: none; }
+.note-row:hover { background: var(--gray-50); }
+.note-body { flex: 1; }
+.note-text { font-size: 14px; color: var(--text); line-height: 1.6; white-space: pre-wrap; }
+.note-meta { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+.note-add-area { resize: vertical; min-height: 72px; width: 100%; }
 
 .kid-note { display: flex; align-items: flex-start; gap: 10px; padding: 8px 1.25rem; border-bottom: 1px solid var(--gray-100); font-size: 13px; transition: background 0.1s; }
 .kid-note:last-child { border-bottom: none; }
@@ -196,6 +189,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   <button class="tab-btn" onclick="showTab('meals',this)">🍽 Meals</button>
   <button class="tab-btn" onclick="showTab('groceries',this)">🛒 Groceries</button>
   <button class="tab-btn" onclick="showTab('kids',this)">⭐ Kids</button>
+  <button class="tab-btn" onclick="showTab('notes',this)">📝 Notes <span class="tab-count" id="cnt-notes">0</span></button>
 </nav>
 
 <main class="main">
@@ -261,12 +255,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   <div class="panel" id="panel-groceries">
     <div class="card" style="padding-bottom:.5rem">
       <div class="store-tabs">
-        <button class="store-pill active-sams" onclick="showStore('sams',this)" id="pill-sams">Sam's Club</button>
-        <button class="store-pill" onclick="showStore('target',this)" id="pill-target">Target</button>
-        <button class="store-pill" onclick="showStore('walmart',this)" id="pill-walmart">Walmart</button>
+        <button class="store-pill active-sams" onclick="showStore('sams',this)">Sam's Club</button>
+        <button class="store-pill" onclick="showStore('target',this)">Target</button>
+        <button class="store-pill" onclick="showStore('walmart',this)">Walmart</button>
       </div>
-
-      <!-- Sam's Club -->
       <div class="store-panel active" id="store-sams">
         <div class="store-header"><span class="store-dot dot-sams"></span>Sam's Club</div>
         <div id="grocery-sams"></div>
@@ -275,8 +267,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
           <button class="btn-add" onclick="addGrocery('sams')" style="background:#0067a0">Add</button>
         </div>
       </div>
-
-      <!-- Target -->
       <div class="store-panel" id="store-target">
         <div class="store-header"><span class="store-dot dot-target"></span>Target</div>
         <div id="grocery-target"></div>
@@ -285,8 +275,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
           <button class="btn-add" onclick="addGrocery('target')" style="background:#cc0000">Add</button>
         </div>
       </div>
-
-      <!-- Walmart -->
       <div class="store-panel" id="store-walmart">
         <div class="store-header"><span class="store-dot dot-walmart"></span>Walmart</div>
         <div id="grocery-walmart"></div>
@@ -320,6 +308,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
             <button class="btn-add" onclick="addKidNote('jack')">Add</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="panel" id="panel-notes">
+    <div class="card">
+      <div class="card-body" id="notes-list"></div>
+      <div class="add-row" style="align-items:flex-end">
+        <textarea class="flex1 note-add-area" id="new-note" placeholder="Type a note or talking point... (Shift+Enter for new line, Enter to save)"></textarea>
+        <button class="btn-add" onclick="addNote()" style="align-self:flex-end">Add</button>
       </div>
     </div>
   </div>
@@ -365,21 +364,9 @@ const DEFAULTS = {
     Thu:{name:'Sheet pan salmon'},Fri:{name:'Takeout 🎉'},Sat:{name:'Grilled burgers'},Sun:{name:'Slow cooker chili'},
   },
   groceries: {
-    sams: {
-      s1:{text:'Chicken breast bulk',got:false},
-      s2:{text:'Paper towels',got:false},
-      s3:{text:'Baby wipes bulk',got:false},
-    },
-    target: {
-      t1:{text:'Baby formula',got:false},
-      t2:{text:'Diapers size 3 (Quinn)',got:false},
-      t3:{text:'Newborn diapers (Jack)',got:false},
-    },
-    walmart: {
-      w1:{text:'Ground beef',got:false},
-      w2:{text:'Pasta',got:false},
-      w3:{text:'Olive oil',got:false},
-    },
+    sams: { s1:{text:'Chicken breast bulk',got:false}, s2:{text:'Paper towels',got:false}, s3:{text:'Baby wipes bulk',got:false} },
+    target: { t1:{text:'Baby formula',got:false}, t2:{text:'Diapers size 3 (Quinn)',got:false}, t3:{text:'Newborn diapers (Jack)',got:false} },
+    walmart: { w1:{text:'Ground beef',got:false}, w2:{text:'Pasta',got:false}, w3:{text:'Olive oil',got:false} },
   },
   quinn: {
     q1:{text:'9-month checkup May 9',icon:'🩺'},
@@ -394,6 +381,7 @@ const DEFAULTS = {
     j3:{text:'Pediatrician: Dr. Smith (856-555-0110)',icon:'📞'},
     j4:{text:'Next checkup: TBD',icon:'🩺'},
   },
+  notes: {},
 };
 
 function setSyncStatus(state) {
@@ -429,12 +417,8 @@ function updateStats() {
   const ec = Object.keys(_events).length;
   document.getElementById('stat-events').textContent = ec;
   document.getElementById('cnt-events').textContent = ec;
-  const allGroceries = [
-    ...Object.values(_groceries.sams||{}),
-    ...Object.values(_groceries.target||{}),
-    ...Object.values(_groceries.walmart||{})
-  ];
-  document.getElementById('stat-grocery').textContent = allGroceries.filter(g=>!g.got).length;
+  const allG = [...Object.values(_groceries.sams||{}),...Object.values(_groceries.target||{}),...Object.values(_groceries.walmart||{})];
+  document.getElementById('stat-grocery').textContent = allG.filter(g=>!g.got).length;
 }
 
 // TASKS
@@ -442,8 +426,7 @@ function renderTasks(data) {
   _tasks = data || {};
   [['me','tasks-me'],['both','tasks-both'],['jessica','tasks-jessica']].forEach(([owner,elId]) => {
     const list = Object.entries(_tasks).filter(([,t])=>t.owner===owner);
-    const el = document.getElementById(elId);
-    el.innerHTML = list.length ? list.map(([id,t])=>`
+    document.getElementById(elId).innerHTML = list.length ? list.map(([id,t])=>`
       <div class="task-row ${t.done?'done':''}">
         <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${id}',${!t.done})" aria-label="${t.text}"/>
         <span class="task-label">${t.text}</span>
@@ -467,9 +450,8 @@ function addTask(owner) {
 const dotColors=['dot-green','dot-purple','dot-amber','dot-coral','dot-blue'];
 function renderEvents(data) {
   _events=data||{};
-  const el=document.getElementById('event-list');
   const list=Object.entries(_events);
-  el.innerHTML = list.length ? list.map(([id,e])=>`
+  document.getElementById('event-list').innerHTML = list.length ? list.map(([id,e])=>`
     <div class="event-row">
       <div class="event-dot ${e.color}"></div>
       <div class="event-text">${e.text}
@@ -507,11 +489,10 @@ function renderMeals(data) {
 function updateMeal(day,val) { setSyncStatus('saving'); db.ref(`${ROOT}/meals/${day}`).set({name:val}); }
 
 // GROCERIES
-function renderGroceryStore(data, store) {
-  _groceries[store] = data || {};
-  const el = document.getElementById('grocery-'+store);
-  const list = Object.entries(_groceries[store]);
-  el.innerHTML = list.length ? list.map(([id,g])=>`
+function renderGroceryStore(data,store) {
+  _groceries[store]=data||{};
+  const list=Object.entries(_groceries[store]);
+  document.getElementById('grocery-'+store).innerHTML = list.length ? list.map(([id,g])=>`
     <div class="grocery-row ${g.got?'got':''}">
       <input type="checkbox" ${g.got?'checked':''} onchange="toggleGrocery('${store}','${id}',${!g.got})" aria-label="${g.text}"/>
       <span class="grocery-label">${g.text}</span>
@@ -548,32 +529,57 @@ function addKidNote(key) {
   inp.value='';
 }
 
+// NOTES
+function renderNotes(data) {
+  const list = Object.entries(data||{}).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0));
+  document.getElementById('cnt-notes').textContent = list.length;
+  document.getElementById('notes-list').innerHTML = list.length ? list.map(([id,n])=>`
+    <div class="note-row">
+      <div class="note-body">
+        <div class="note-text">${n.text}</div>
+        <div class="note-meta">${n.author ? n.author + ' · ' : ''}${n.date||''}</div>
+      </div>
+      <button class="delete-btn" onclick="deleteNote('${id}')" aria-label="Delete">✕</button>
+    </div>`).join('') : '<div class="empty">No notes yet — add talking points, reminders, or anything you want to discuss</div>';
+}
+function deleteNote(id) { setSyncStatus('saving'); db.ref(`${ROOT}/notes/${id}`).remove(); }
+function addNote() {
+  const inp=document.getElementById('new-note');
+  const v=inp.value.trim(); if(!v)return;
+  setSyncStatus('saving');
+  const now=new Date();
+  const date=now.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+  db.ref(`${ROOT}/notes`).push({text:v,date,ts:Date.now()});
+  inp.value='';
+}
+
 // Enter key
 document.addEventListener('keydown', e => {
-  if (e.key!=='Enter'||e.target.classList.contains('meal-name-input')) return;
   const id=e.target.id;
-  if(id==='new-task-me') addTask('me');
-  else if(id==='new-task-both') addTask('both');
-  else if(id==='new-task-jessica') addTask('jessica');
-  else if(id==='new-event'||id==='new-event-date') addEvent();
-  else if(id==='new-grocery-sams') addGrocery('sams');
-  else if(id==='new-grocery-target') addGrocery('target');
-  else if(id==='new-grocery-walmart') addGrocery('walmart');
-  else if(id==='new-quinn') addKidNote('quinn');
-  else if(id==='new-jack') addKidNote('jack');
+  if (e.key==='Enter' && !e.shiftKey) {
+    if (id==='new-task-me') { e.preventDefault(); addTask('me'); }
+    else if (id==='new-task-both') { e.preventDefault(); addTask('both'); }
+    else if (id==='new-task-jessica') { e.preventDefault(); addTask('jessica'); }
+    else if (id==='new-event'||id==='new-event-date') { e.preventDefault(); addEvent(); }
+    else if (id==='new-grocery-sams') { e.preventDefault(); addGrocery('sams'); }
+    else if (id==='new-grocery-target') { e.preventDefault(); addGrocery('target'); }
+    else if (id==='new-grocery-walmart') { e.preventDefault(); addGrocery('walmart'); }
+    else if (id==='new-quinn') { e.preventDefault(); addKidNote('quinn'); }
+    else if (id==='new-jack') { e.preventDefault(); addKidNote('jack'); }
+    else if (id==='new-note') { e.preventDefault(); addNote(); }
+  }
 });
 
 document.getElementById('header-date').textContent =
   new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
 
-// Init — check if groceries need migration from old flat structure
+// Init
 db.ref(ROOT).once('value', snap => {
   if (!snap.exists()) {
     db.ref(ROOT).set(DEFAULTS).then(startListeners);
   } else {
-    // migrate old flat groceries to new store structure if needed
     const existing = snap.val();
-    if (existing.groceries && !existing.groceries.sams && !existing.groceries.target && !existing.groceries.walmart) {
+    if (existing.groceries && !existing.groceries.sams) {
       db.ref(`${ROOT}/groceries`).set(DEFAULTS.groceries).then(startListeners);
     } else {
       startListeners();
@@ -592,6 +598,7 @@ function startListeners() {
   db.ref(`${ROOT}/groceries/walmart`).on('value', s => { renderGroceryStore(s.val(),'walmart'); setSyncStatus('live'); });
   db.ref(`${ROOT}/quinn`).on('value', s => { renderKid(s.val(),'quinn','quinn-list'); setSyncStatus('live'); });
   db.ref(`${ROOT}/jack`).on('value', s => { renderKid(s.val(),'jack','jack-list'); setSyncStatus('live'); });
+  db.ref(`${ROOT}/notes`).on('value', s => { renderNotes(s.val()); setSyncStatus('live'); });
 }
 </script>
 </body>
