@@ -86,7 +86,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .event-row:hover .delete-btn,
 .grocery-row:hover .delete-btn,
 .kid-note:hover .delete-btn,
-.note-row:hover .delete-btn { opacity: 1; }
+.note-row:hover .delete-btn,
+.recipe-row:hover .delete-btn { opacity: 1; }
 .delete-btn:hover { color: var(--coral); background: var(--coral-light); }
 
 .add-row { display: flex; gap: 8px; padding: 0.75rem 1.25rem; border-top: 1px solid var(--gray-100); align-items: center; flex-wrap: wrap; background: var(--gray-50); }
@@ -109,26 +110,48 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .event-date { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
 .event-who { font-size: 11px; color: var(--gray-400); margin-top: 1px; }
 
-.meal-row { display: flex; align-items: center; gap: 12px; padding: 9px 1.25rem; border-bottom: 1px solid var(--gray-100); }
+/* ── Meals ── */
+.meal-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 1.25rem; border-bottom: 1px solid var(--gray-100);
+}
 .meal-row:last-child { border-bottom: none; }
 .meal-day { width: 36px; font-size: 12px; font-weight: 600; color: var(--gray-400); flex-shrink: 0; }
-.meal-name-input { flex: 1; font-size: 14px; border: none; background: transparent; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; padding: 2px 6px; border-radius: 6px; }
-.meal-name-input:focus { background: var(--gray-50); }
-.meal-name-input::placeholder { color: var(--gray-400); }
+.meal-select {
+  flex: 1; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  padding: 6px 10px; border: 1px solid var(--gray-200); border-radius: 8px;
+  background: var(--gray-50); color: var(--text); outline: none;
+  cursor: pointer; transition: border-color 0.15s;
+}
+.meal-select:focus { border-color: var(--green); }
+.meal-add-option {
+  display: flex; gap: 6px; padding: 8px 1.25rem 8px 4.5rem;
+  border-top: 1px solid var(--gray-100); background: var(--gray-50);
+}
+.meal-add-option input {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 5px 10px;
+  border: 1px solid var(--gray-200); border-radius: 8px; background: #fff;
+  color: var(--text); outline: none; flex: 1;
+}
+.meal-add-option input:focus { border-color: var(--green); }
+.meal-add-option button {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+  padding: 5px 12px; border-radius: 8px; border: none;
+  background: var(--green); color: #fff; cursor: pointer;
+}
 
+/* ── Groceries ── */
 .store-header { display: flex; align-items: center; gap: 8px; padding: 10px 1.25rem 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--gray-100); }
 .store-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .dot-sams { background: #0067a0; }
 .dot-target { background: #cc0000; }
 .dot-walmart { background: #0071ce; }
-
 .grocery-row { display: flex; align-items: center; gap: 10px; padding: 8px 1.25rem 8px 2rem; border-bottom: 1px solid var(--gray-100); transition: background 0.1s; }
 .grocery-row:last-child { border-bottom: none; }
 .grocery-row:hover { background: var(--gray-50); }
 .grocery-row input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
 .grocery-label { flex: 1; font-size: 14px; }
 .grocery-row.got .grocery-label { text-decoration: line-through; color: var(--gray-400); }
-
 .store-tabs { display: flex; gap: 6px; padding: 0.75rem 1.25rem 0; flex-wrap: wrap; }
 .store-pill { font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 20px; border: 1.5px solid var(--gray-200); background: none; cursor: pointer; font-family: 'DM Sans', sans-serif; color: var(--gray-600); transition: all 0.15s; }
 .store-pill:hover { border-color: var(--gray-400); color: var(--text); }
@@ -138,7 +161,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .store-panel { display: none; }
 .store-panel.active { display: block; }
 
-/* Notes */
+/* ── Notes ── */
 .note-row { display: flex; align-items: flex-start; gap: 10px; padding: 12px 1.25rem; border-bottom: 1px solid var(--gray-100); transition: background 0.1s; }
 .note-row:last-child { border-bottom: none; }
 .note-row:hover { background: var(--gray-50); }
@@ -147,11 +170,70 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .note-meta { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
 .note-add-area { resize: vertical; min-height: 72px; width: 100%; }
 
+/* ── Kids ── */
 .kid-note { display: flex; align-items: flex-start; gap: 10px; padding: 8px 1.25rem; border-bottom: 1px solid var(--gray-100); font-size: 13px; transition: background 0.1s; }
 .kid-note:last-child { border-bottom: none; }
 .kid-note:hover { background: var(--gray-50); }
 .kid-note-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
 .kid-note-text { flex: 1; }
+
+/* ── Recipes ── */
+.protein-group { margin-bottom: 1rem; }
+.protein-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 1.25rem; background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--gray-600);
+  cursor: pointer; user-select: none;
+}
+.protein-header:hover { background: var(--gray-100); }
+.protein-emoji { font-size: 16px; }
+.protein-count { margin-left: auto; font-size: 11px; font-weight: 400; color: var(--gray-400); }
+.protein-chevron { font-size: 12px; color: var(--gray-400); transition: transform 0.2s; }
+.protein-chevron.open { transform: rotate(90deg); }
+.protein-body { display: none; }
+.protein-body.open { display: block; }
+
+.recipe-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 1.25rem; border-bottom: 1px solid var(--gray-100);
+  transition: background 0.1s; cursor: pointer;
+}
+.recipe-row:last-child { border-bottom: none; }
+.recipe-row:hover { background: var(--gray-50); }
+.recipe-info { flex: 1; }
+.recipe-name { font-size: 14px; font-weight: 500; color: var(--text); }
+.recipe-notes { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.recipe-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+.recipe-tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; background: var(--green-light); color: var(--green); font-weight: 500; }
+
+/* Recipe detail modal */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 200; display: none; align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  width: 100%; max-width: 560px; max-height: 85vh; overflow-y: auto;
+}
+.modal-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 1.25rem 1.25rem 0.75rem; border-bottom: 1px solid var(--gray-100);
+  position: sticky; top: 0; background: var(--card); z-index: 1;
+}
+.modal-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; }
+.modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--gray-400); padding: 2px 6px; border-radius: 4px; }
+.modal-close:hover { background: var(--gray-100); }
+.modal-body { padding: 1rem 1.25rem 1.5rem; }
+.modal-section { margin-bottom: 1rem; }
+.modal-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 6px; }
+.modal-section p, .modal-section li { font-size: 14px; line-height: 1.7; color: var(--text); }
+.modal-section ul, .modal-section ol { padding-left: 1.25rem; }
+.modal-protein-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--green-light); color: var(--green); margin-bottom: 10px; }
 
 .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray-400); padding: 1rem 0 0.4rem; }
 .empty { padding: 1.5rem 1.25rem; text-align: center; font-size: 13px; color: var(--gray-400); }
@@ -163,6 +245,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   <div class="spinner"></div>
   <h2>Findley Family HQ</h2>
   <p>Connecting to database...</p>
+</div>
+
+<!-- Recipe modal -->
+<div class="modal-overlay" id="recipe-modal" onclick="closeRecipeModal(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-recipe-name"></div>
+      <button class="modal-close" onclick="closeRecipeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-recipe-body"></div>
+  </div>
 </div>
 
 <header class="site-header">
@@ -189,6 +282,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   <button class="tab-btn" onclick="showTab('meals',this)">🍽 Meals</button>
   <button class="tab-btn" onclick="showTab('groceries',this)">🛒 Groceries</button>
   <button class="tab-btn" onclick="showTab('kids',this)">⭐ Kids</button>
+  <button class="tab-btn" onclick="showTab('recipes',this)">👨‍🍳 Recipes <span class="tab-count" id="cnt-recipes">0</span></button>
   <button class="tab-btn" onclick="showTab('notes',this)">📝 Notes <span class="tab-count" id="cnt-notes">0</span></button>
 </nav>
 
@@ -245,10 +339,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 
   <!-- MEALS -->
   <div class="panel" id="panel-meals">
-    <div class="section-label">Meal plan — click any meal to edit</div>
-    <div class="card">
-      <div class="card-body" id="meal-list"></div>
-    </div>
+    <div class="section-label">Meal plan — pick from dropdown or add new options</div>
+    <div class="card" id="meal-list"></div>
   </div>
 
   <!-- GROCERIES -->
@@ -312,6 +404,37 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     </div>
   </div>
 
+  <!-- RECIPES -->
+  <div class="panel" id="panel-recipes">
+    <div class="section-label">Sorted by protein — click a recipe to see details</div>
+    <div id="recipe-groups"></div>
+    <div class="card">
+      <div style="padding:1rem 1.25rem 0.5rem;font-size:13px;font-weight:600;color:var(--gray-600);border-bottom:1px solid var(--gray-100)">Add a recipe</div>
+      <div class="add-row" style="flex-wrap:wrap;gap:8px">
+        <input class="flex1" id="new-recipe-name" placeholder="Recipe name..." style="min-width:160px"/>
+        <select id="new-recipe-protein">
+          <option value="">— Protein —</option>
+          <option>Chicken</option>
+          <option>Beef</option>
+          <option>Pork</option>
+          <option>Seafood</option>
+          <option>Turkey</option>
+          <option>Vegetarian</option>
+          <option>Other</option>
+        </select>
+        <input id="new-recipe-tags" placeholder="Tags (e.g. quick, grilled)" style="width:180px"/>
+      </div>
+      <div class="add-row" style="flex-wrap:wrap">
+        <textarea class="flex1" id="new-recipe-ingredients" placeholder="Ingredients (one per line)" style="min-height:80px;resize:vertical"></textarea>
+        <textarea class="flex1" id="new-recipe-steps" placeholder="Steps / instructions" style="min-height:80px;resize:vertical"></textarea>
+      </div>
+      <div class="add-row">
+        <input class="flex1" id="new-recipe-notes" placeholder="Notes (optional — e.g. great on the recteq, double sauce)"/>
+        <button class="btn-add" onclick="addRecipe()">Save Recipe</button>
+      </div>
+    </div>
+  </div>
+
   <!-- NOTES -->
   <div class="panel" id="panel-notes">
     <div class="card">
@@ -360,8 +483,15 @@ const DEFAULTS = {
     e5:{text:'Car oil change',date:'May 13',who:'Travis',color:'dot-blue'},
   },
   meals: {
-    Mon:{name:'Chicken stir fry'},Tue:{name:'Tacos'},Wed:{name:'Pasta & salad'},
-    Thu:{name:'Sheet pan salmon'},Fri:{name:'Takeout 🎉'},Sat:{name:'Grilled burgers'},Sun:{name:'Slow cooker chili'},
+    options: {
+      o1:'Chicken stir fry', o2:'Tacos', o3:'Pasta & salad',
+      o4:'Sheet pan salmon', o5:'Grilled burgers', o6:'Slow cooker chili',
+      o7:'Takeout 🎉',
+    },
+    plan: {
+      Mon:'Chicken stir fry', Tue:'Tacos', Wed:'Pasta & salad',
+      Thu:'Sheet pan salmon', Fri:'Takeout 🎉', Sat:'Grilled burgers', Sun:'Slow cooker chili',
+    }
   },
   groceries: {
     sams: { s1:{text:'Chicken breast bulk',got:false}, s2:{text:'Paper towels',got:false}, s3:{text:'Baby wipes bulk',got:false} },
@@ -381,25 +511,28 @@ const DEFAULTS = {
     j3:{text:'Pediatrician: Dr. Smith (856-555-0110)',icon:'📞'},
     j4:{text:'Next checkup: TBD',icon:'🩺'},
   },
+  recipes: {
+    r1:{name:'Grilled Chicken Thighs',protein:'Chicken',tags:'grilled,recteq',ingredients:'4 chicken thighs\n2 tbsp olive oil\nSalt, pepper, garlic powder\nPaprika',steps:'1. Preheat recteq to 400°F\n2. Season chicken with oil and spices\n3. Grill 20-25 min, flip halfway\n4. Rest 5 min before serving',notes:'Great on the recteq. Double the seasoning for a crowd.'},
+    r2:{name:'Slow Cooker Chili',protein:'Beef',tags:'slow cooker,easy',ingredients:'1.5 lb ground beef\n1 can kidney beans\n1 can diced tomatoes\n1 onion diced\nChili powder, cumin, garlic',steps:'1. Brown beef in skillet\n2. Add all ingredients to slow cooker\n3. Cook on low 6-8 hrs or high 3-4 hrs',notes:'Better the next day. Freeze leftovers.'},
+    r3:{name:'Sheet Pan Salmon',protein:'Seafood',tags:'quick,healthy',ingredients:'4 salmon fillets\nLemon, olive oil\nGarlic, dill\nAsorted veggies',steps:'1. Preheat oven to 425°F\n2. Season salmon and veggies\n3. Roast 15-18 min',notes:''},
+  },
   notes: {},
 };
 
+// ── UI helpers ──
 function setSyncStatus(state) {
-  const dot = document.getElementById('sync-dot');
-  const lbl = document.getElementById('sync-label');
-  if (state==='live') { dot.className='sync-dot live'; lbl.textContent='Live — synced'; }
-  else if (state==='saving') { dot.className='sync-dot saving'; lbl.textContent='Saving...'; }
-  else { dot.className='sync-dot'; lbl.textContent='Offline'; }
+  const dot=document.getElementById('sync-dot'), lbl=document.getElementById('sync-label');
+  if(state==='live'){dot.className='sync-dot live';lbl.textContent='Live — synced';}
+  else if(state==='saving'){dot.className='sync-dot saving';lbl.textContent='Saving...';}
+  else{dot.className='sync-dot';lbl.textContent='Offline';}
 }
-
-function showTab(id, btn) {
+function showTab(id,btn) {
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
   btn.classList.add('active');
 }
-
-function showStore(store, btn) {
+function showStore(store,btn) {
   document.querySelectorAll('.store-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.store-pill').forEach(b=>b.className='store-pill');
   document.getElementById('store-'+store).classList.add('active');
@@ -409,49 +542,49 @@ function showStore(store, btn) {
 let _tasks={}, _events={}, _groceries={sams:{},target:{},walmart:{}};
 
 function updateStats() {
-  const ta = Object.values(_tasks);
-  document.getElementById('stat-done').textContent = ta.filter(t=>t.done).length;
-  const left = ta.filter(t=>!t.done).length;
-  document.getElementById('stat-left').textContent = left;
-  document.getElementById('cnt-tasks').textContent = left;
-  const ec = Object.keys(_events).length;
-  document.getElementById('stat-events').textContent = ec;
-  document.getElementById('cnt-events').textContent = ec;
-  const allG = [...Object.values(_groceries.sams||{}),...Object.values(_groceries.target||{}),...Object.values(_groceries.walmart||{})];
-  document.getElementById('stat-grocery').textContent = allG.filter(g=>!g.got).length;
+  const ta=Object.values(_tasks);
+  document.getElementById('stat-done').textContent=ta.filter(t=>t.done).length;
+  const left=ta.filter(t=>!t.done).length;
+  document.getElementById('stat-left').textContent=left;
+  document.getElementById('cnt-tasks').textContent=left;
+  const ec=Object.keys(_events).length;
+  document.getElementById('stat-events').textContent=ec;
+  document.getElementById('cnt-events').textContent=ec;
+  const allG=[...Object.values(_groceries.sams||{}),...Object.values(_groceries.target||{}),...Object.values(_groceries.walmart||{})];
+  document.getElementById('stat-grocery').textContent=allG.filter(g=>!g.got).length;
 }
 
-// TASKS
+// ── TASKS ──
 function renderTasks(data) {
-  _tasks = data || {};
-  [['me','tasks-me'],['both','tasks-both'],['jessica','tasks-jessica']].forEach(([owner,elId]) => {
-    const list = Object.entries(_tasks).filter(([,t])=>t.owner===owner);
-    document.getElementById(elId).innerHTML = list.length ? list.map(([id,t])=>`
+  _tasks=data||{};
+  [['me','tasks-me'],['both','tasks-both'],['jessica','tasks-jessica']].forEach(([owner,elId])=>{
+    const list=Object.entries(_tasks).filter(([,t])=>t.owner===owner);
+    document.getElementById(elId).innerHTML=list.length?list.map(([id,t])=>`
       <div class="task-row ${t.done?'done':''}">
         <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${id}',${!t.done})" aria-label="${t.text}"/>
         <span class="task-label">${t.text}</span>
         <button class="delete-btn" onclick="deleteTask('${id}')" aria-label="Delete">✕</button>
-      </div>`).join('') : '<div class="empty">Nothing here — nice! ✓</div>';
+      </div>`).join(''):'<div class="empty">Nothing here — nice! ✓</div>';
   });
   updateStats();
 }
-function toggleTask(id,val) { setSyncStatus('saving'); db.ref(`${ROOT}/tasks/${id}/done`).set(val); }
-function deleteTask(id) { setSyncStatus('saving'); db.ref(`${ROOT}/tasks/${id}`).remove(); }
-function addTask(owner) {
+function toggleTask(id,val){setSyncStatus('saving');db.ref(`${ROOT}/tasks/${id}/done`).set(val);}
+function deleteTask(id){setSyncStatus('saving');db.ref(`${ROOT}/tasks/${id}`).remove();}
+function addTask(owner){
   const ids={me:'new-task-me',both:'new-task-both',jessica:'new-task-jessica'};
   const inp=document.getElementById(ids[owner]);
-  const v=inp.value.trim(); if(!v)return;
+  const v=inp.value.trim();if(!v)return;
   setSyncStatus('saving');
   db.ref(`${ROOT}/tasks`).push({text:v,owner,done:false,order:Date.now()});
   inp.value='';
 }
 
-// EVENTS
+// ── EVENTS ──
 const dotColors=['dot-green','dot-purple','dot-amber','dot-coral','dot-blue'];
-function renderEvents(data) {
+function renderEvents(data){
   _events=data||{};
   const list=Object.entries(_events);
-  document.getElementById('event-list').innerHTML = list.length ? list.map(([id,e])=>`
+  document.getElementById('event-list').innerHTML=list.length?list.map(([id,e])=>`
     <div class="event-row">
       <div class="event-dot ${e.color}"></div>
       <div class="event-text">${e.text}
@@ -459,11 +592,11 @@ function renderEvents(data) {
         <div class="event-who">${e.who}</div>
       </div>
       <button class="delete-btn" onclick="deleteEvent('${id}')" aria-label="Delete">✕</button>
-    </div>`).join('') : '<div class="empty">No upcoming events</div>';
+    </div>`).join(''):'<div class="empty">No upcoming events</div>';
   updateStats();
 }
-function deleteEvent(id) { setSyncStatus('saving'); db.ref(`${ROOT}/events/${id}`).remove(); }
-function addEvent() {
+function deleteEvent(id){setSyncStatus('saving');db.ref(`${ROOT}/events/${id}`).remove();}
+function addEvent(){
   const v=document.getElementById('new-event').value.trim();
   const d=document.getElementById('new-event-date').value.trim()||'TBD';
   const w=document.getElementById('new-event-who').value;
@@ -474,131 +607,252 @@ function addEvent() {
   document.getElementById('new-event-date').value='';
 }
 
-// MEALS
+// ── MEALS ──
 const DAY_ORDER=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-function renderMeals(data) {
-  const meals=data||{};
-  document.getElementById('meal-list').innerHTML = DAY_ORDER.map(day=>`
-    <div class="meal-row">
-      <span class="meal-day">${day}</span>
-      <input class="meal-name-input" type="text" value="${(meals[day]&&meals[day].name)||''}" placeholder="What's for dinner?"
-        onblur="updateMeal('${day}',this.value.trim())"
-        onkeydown="if(event.key==='Enter')this.blur()"/>
-    </div>`).join('');
-}
-function updateMeal(day,val) { setSyncStatus('saving'); db.ref(`${ROOT}/meals/${day}`).set({name:val}); }
+let _mealOptions={}, _mealPlan={};
 
-// GROCERIES
-function renderGroceryStore(data,store) {
+function renderMeals(data){
+  _mealOptions=data&&data.options?data.options:{};
+  _mealPlan=data&&data.plan?data.plan:{};
+  const optionList=Object.values(_mealOptions);
+  const el=document.getElementById('meal-list');
+  el.innerHTML=DAY_ORDER.map(day=>{
+    const current=_mealPlan[day]||'';
+    const opts=optionList.map(o=>`<option value="${o}" ${o===current?'selected':''}>${o}</option>`).join('');
+    return `<div>
+      <div class="meal-row">
+        <span class="meal-day">${day}</span>
+        <select class="meal-select" id="meal-sel-${day}" onchange="updateMealPlan('${day}',this.value)">
+          <option value="">— pick a meal —</option>
+          ${opts}
+        </select>
+      </div>
+      <div class="meal-add-option">
+        <input id="meal-new-${day}" placeholder="Add new meal option..." onkeydown="if(event.key==='Enter'){event.preventDefault();addMealOption('${day}')}"/>
+        <button onclick="addMealOption('${day}')">+ Add</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateMealPlan(day,val){
+  setSyncStatus('saving');
+  db.ref(`${ROOT}/meals/plan/${day}`).set(val);
+}
+function addMealOption(day){
+  const inp=document.getElementById(`meal-new-${day}`);
+  const v=inp.value.trim();if(!v)return;
+  setSyncStatus('saving');
+  db.ref(`${ROOT}/meals/options`).push(v);
+  inp.value='';
+}
+
+// ── GROCERIES ──
+function renderGroceryStore(data,store){
   _groceries[store]=data||{};
   const list=Object.entries(_groceries[store]);
-  document.getElementById('grocery-'+store).innerHTML = list.length ? list.map(([id,g])=>`
+  document.getElementById('grocery-'+store).innerHTML=list.length?list.map(([id,g])=>`
     <div class="grocery-row ${g.got?'got':''}">
       <input type="checkbox" ${g.got?'checked':''} onchange="toggleGrocery('${store}','${id}',${!g.got})" aria-label="${g.text}"/>
       <span class="grocery-label">${g.text}</span>
       <button class="delete-btn" onclick="deleteGrocery('${store}','${id}')" aria-label="Delete">✕</button>
-    </div>`).join('') : '<div class="empty">List is empty</div>';
+    </div>`).join(''):'<div class="empty">List is empty</div>';
   updateStats();
 }
-function toggleGrocery(store,id,val) { setSyncStatus('saving'); db.ref(`${ROOT}/groceries/${store}/${id}/got`).set(val); }
-function deleteGrocery(store,id) { setSyncStatus('saving'); db.ref(`${ROOT}/groceries/${store}/${id}`).remove(); }
-function addGrocery(store) {
+function toggleGrocery(store,id,val){setSyncStatus('saving');db.ref(`${ROOT}/groceries/${store}/${id}/got`).set(val);}
+function deleteGrocery(store,id){setSyncStatus('saving');db.ref(`${ROOT}/groceries/${store}/${id}`).remove();}
+function addGrocery(store){
   const inp=document.getElementById('new-grocery-'+store);
-  const v=inp.value.trim(); if(!v)return;
+  const v=inp.value.trim();if(!v)return;
   setSyncStatus('saving');
   db.ref(`${ROOT}/groceries/${store}`).push({text:v,got:false});
   inp.value='';
 }
 
-// KIDS
-function renderKid(data,key,elId) {
+// ── KIDS ──
+function renderKid(data,key,elId){
   const list=Object.entries(data||{});
-  document.getElementById(elId).innerHTML = list.length ? list.map(([id,n])=>`
+  document.getElementById(elId).innerHTML=list.length?list.map(([id,n])=>`
     <div class="kid-note">
       <span class="kid-note-icon">${n.icon||'📌'}</span>
       <span class="kid-note-text">${n.text}</span>
       <button class="delete-btn" onclick="deleteKidNote('${key}','${id}')" aria-label="Delete">✕</button>
-    </div>`).join('') : '<div class="empty">Add a note or milestone</div>';
+    </div>`).join(''):'<div class="empty">Add a note or milestone</div>';
 }
-function deleteKidNote(key,id) { setSyncStatus('saving'); db.ref(`${ROOT}/${key}/${id}`).remove(); }
-function addKidNote(key) {
+function deleteKidNote(key,id){setSyncStatus('saving');db.ref(`${ROOT}/${key}/${id}`).remove();}
+function addKidNote(key){
   const inp=document.getElementById('new-'+key);
-  const v=inp.value.trim(); if(!v)return;
+  const v=inp.value.trim();if(!v)return;
   setSyncStatus('saving');
   db.ref(`${ROOT}/${key}`).push({text:v,icon:'📌'});
   inp.value='';
 }
 
-// NOTES
-function renderNotes(data) {
-  const list = Object.entries(data||{}).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0));
-  document.getElementById('cnt-notes').textContent = list.length;
-  document.getElementById('notes-list').innerHTML = list.length ? list.map(([id,n])=>`
+// ── RECIPES ──
+const PROTEIN_EMOJIS={Chicken:'🍗',Beef:'🥩',Pork:'🐷',Seafood:'🐟',Turkey:'🦃',Vegetarian:'🥦',Other:'🍳'};
+const PROTEIN_ORDER=['Chicken','Beef','Pork','Seafood','Turkey','Vegetarian','Other'];
+
+function renderRecipes(data){
+  const recipes=data||{};
+  const count=Object.keys(recipes).length;
+  document.getElementById('cnt-recipes').textContent=count;
+  const grouped={};
+  Object.entries(recipes).forEach(([id,r])=>{
+    const p=r.protein||'Other';
+    if(!grouped[p])grouped[p]=[];
+    grouped[p].push({id,...r});
+  });
+  const el=document.getElementById('recipe-groups');
+  if(!count){el.innerHTML='<div class="card"><div class="empty">No recipes yet — add your first one below</div></div>';return;}
+  el.innerHTML=PROTEIN_ORDER.filter(p=>grouped[p]).map(p=>{
+    const items=grouped[p];
+    const emoji=PROTEIN_EMOJIS[p]||'🍳';
+    return `<div class="card protein-group">
+      <div class="protein-header" onclick="toggleProtein('${p}')">
+        <span class="protein-emoji">${emoji}</span>
+        <span>${p}</span>
+        <span class="protein-count">${items.length} recipe${items.length!==1?'s':''}</span>
+        <span class="protein-chevron open" id="chev-${p}">▶</span>
+      </div>
+      <div class="protein-body open" id="pbody-${p}">
+        ${items.map(r=>`
+          <div class="recipe-row" onclick="openRecipe('${r.id}')">
+            <div class="recipe-info">
+              <div class="recipe-name">${r.name}</div>
+              ${r.notes?`<div class="recipe-notes">${r.notes}</div>`:''}
+              ${r.tags?`<div class="recipe-tags">${r.tags.split(',').map(t=>`<span class="recipe-tag">${t.trim()}</span>`).join('')}</div>`:''}
+            </div>
+            <button class="delete-btn" onclick="event.stopPropagation();deleteRecipe('${r.id}')" aria-label="Delete">✕</button>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleProtein(p){
+  const body=document.getElementById('pbody-'+p);
+  const chev=document.getElementById('chev-'+p);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+let _recipesCache={};
+function openRecipe(id){
+  const r=_recipesCache[id];if(!r)return;
+  document.getElementById('modal-recipe-name').textContent=r.name;
+  const emoji=PROTEIN_EMOJIS[r.protein]||'🍳';
+  document.getElementById('modal-recipe-body').innerHTML=`
+    <div class="modal-protein-badge">${emoji} ${r.protein||'Other'}</div>
+    ${r.tags?`<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">${r.tags.split(',').map(t=>`<span class="recipe-tag">${t.trim()}</span>`).join('')}</div>`:''}
+    ${r.ingredients?`<div class="modal-section"><div class="modal-section-title">Ingredients</div><ul>${r.ingredients.split('\n').filter(Boolean).map(i=>`<li>${i}</li>`).join('')}</ul></div>`:''}
+    ${r.steps?`<div class="modal-section"><div class="modal-section-title">Instructions</div><ol>${r.steps.split('\n').filter(Boolean).map(s=>`<li>${s.replace(/^\d+\.\s*/,'')}</li>`).join('')}</ol></div>`:''}
+    ${r.notes?`<div class="modal-section"><div class="modal-section-title">Notes</div><p>${r.notes}</p></div>`:''}
+  `;
+  document.getElementById('recipe-modal').classList.add('open');
+}
+function closeRecipeModal(e){if(e.target===document.getElementById('recipe-modal'))closeRecipeModalDirect();}
+function closeRecipeModalDirect(){document.getElementById('recipe-modal').classList.remove('open');}
+
+function deleteRecipe(id){setSyncStatus('saving');db.ref(`${ROOT}/recipes/${id}`).remove();}
+function addRecipe(){
+  const name=document.getElementById('new-recipe-name').value.trim();
+  const protein=document.getElementById('new-recipe-protein').value;
+  if(!name||!protein){alert('Please enter a recipe name and select a protein.');return;}
+  setSyncStatus('saving');
+  db.ref(`${ROOT}/recipes`).push({
+    name,
+    protein,
+    tags:document.getElementById('new-recipe-tags').value.trim(),
+    ingredients:document.getElementById('new-recipe-ingredients').value.trim(),
+    steps:document.getElementById('new-recipe-steps').value.trim(),
+    notes:document.getElementById('new-recipe-notes').value.trim(),
+    ts:Date.now(),
+  });
+  ['new-recipe-name','new-recipe-tags','new-recipe-ingredients','new-recipe-steps','new-recipe-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('new-recipe-protein').value='';
+}
+
+// ── NOTES ──
+function renderNotes(data){
+  const list=Object.entries(data||{}).sort((a,b)=>(b[1].ts||0)-(a[1].ts||0));
+  document.getElementById('cnt-notes').textContent=list.length;
+  document.getElementById('notes-list').innerHTML=list.length?list.map(([id,n])=>`
     <div class="note-row">
       <div class="note-body">
         <div class="note-text">${n.text}</div>
-        <div class="note-meta">${n.author ? n.author + ' · ' : ''}${n.date||''}</div>
+        <div class="note-meta">${n.date||''}</div>
       </div>
       <button class="delete-btn" onclick="deleteNote('${id}')" aria-label="Delete">✕</button>
-    </div>`).join('') : '<div class="empty">No notes yet — add talking points, reminders, or anything you want to discuss</div>';
+    </div>`).join(''):'<div class="empty">No notes yet — add talking points, reminders, or anything you want to discuss</div>';
 }
-function deleteNote(id) { setSyncStatus('saving'); db.ref(`${ROOT}/notes/${id}`).remove(); }
-function addNote() {
+function deleteNote(id){setSyncStatus('saving');db.ref(`${ROOT}/notes/${id}`).remove();}
+function addNote(){
   const inp=document.getElementById('new-note');
-  const v=inp.value.trim(); if(!v)return;
+  const v=inp.value.trim();if(!v)return;
   setSyncStatus('saving');
-  const now=new Date();
-  const date=now.toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+  const date=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
   db.ref(`${ROOT}/notes`).push({text:v,date,ts:Date.now()});
   inp.value='';
 }
 
-// Enter key
-document.addEventListener('keydown', e => {
+// ── Enter key ──
+document.addEventListener('keydown',e=>{
   const id=e.target.id;
-  if (e.key==='Enter' && !e.shiftKey) {
-    if (id==='new-task-me') { e.preventDefault(); addTask('me'); }
-    else if (id==='new-task-both') { e.preventDefault(); addTask('both'); }
-    else if (id==='new-task-jessica') { e.preventDefault(); addTask('jessica'); }
-    else if (id==='new-event'||id==='new-event-date') { e.preventDefault(); addEvent(); }
-    else if (id==='new-grocery-sams') { e.preventDefault(); addGrocery('sams'); }
-    else if (id==='new-grocery-target') { e.preventDefault(); addGrocery('target'); }
-    else if (id==='new-grocery-walmart') { e.preventDefault(); addGrocery('walmart'); }
-    else if (id==='new-quinn') { e.preventDefault(); addKidNote('quinn'); }
-    else if (id==='new-jack') { e.preventDefault(); addKidNote('jack'); }
-    else if (id==='new-note') { e.preventDefault(); addNote(); }
+  if(e.key==='Enter'&&!e.shiftKey){
+    if(id==='new-task-me'){e.preventDefault();addTask('me');}
+    else if(id==='new-task-both'){e.preventDefault();addTask('both');}
+    else if(id==='new-task-jessica'){e.preventDefault();addTask('jessica');}
+    else if(id==='new-event'||id==='new-event-date'){e.preventDefault();addEvent();}
+    else if(id==='new-grocery-sams'){e.preventDefault();addGrocery('sams');}
+    else if(id==='new-grocery-target'){e.preventDefault();addGrocery('target');}
+    else if(id==='new-grocery-walmart'){e.preventDefault();addGrocery('walmart');}
+    else if(id==='new-quinn'){e.preventDefault();addKidNote('quinn');}
+    else if(id==='new-jack'){e.preventDefault();addKidNote('jack');}
+    else if(id==='new-note'){e.preventDefault();addNote();}
   }
+  if(e.key==='Escape')closeRecipeModalDirect();
 });
 
-document.getElementById('header-date').textContent =
+document.getElementById('header-date').textContent=
   new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
 
-// Init
-db.ref(ROOT).once('value', snap => {
-  if (!snap.exists()) {
+// ── Init ──
+db.ref(ROOT).once('value',snap=>{
+  if(!snap.exists()){
     db.ref(ROOT).set(DEFAULTS).then(startListeners);
   } else {
-    const existing = snap.val();
-    if (existing.groceries && !existing.groceries.sams) {
-      db.ref(`${ROOT}/groceries`).set(DEFAULTS.groceries).then(startListeners);
-    } else {
-      startListeners();
+    const ex=snap.val();
+    // migrate flat groceries if needed
+    if(ex.groceries&&!ex.groceries.sams){
+      db.ref(`${ROOT}/groceries`).set(DEFAULTS.groceries).then(()=>{});
     }
+    // migrate flat meals to new options/plan structure if needed
+    if(ex.meals&&!ex.meals.options){
+      const oldMeals=ex.meals;
+      const plan={};
+      const options={};
+      DAY_ORDER.forEach((day,i)=>{
+        if(oldMeals[day]){plan[day]=oldMeals[day].name||'';options['o'+(i+1)]=oldMeals[day].name||'';}
+      });
+      db.ref(`${ROOT}/meals`).set({options,plan}).then(()=>{});
+    }
+    startListeners();
   }
   document.getElementById('loading').style.display='none';
   setSyncStatus('live');
 });
 
-function startListeners() {
-  db.ref(`${ROOT}/tasks`).on('value', s => { renderTasks(s.val()); setSyncStatus('live'); });
-  db.ref(`${ROOT}/events`).on('value', s => { renderEvents(s.val()); setSyncStatus('live'); });
-  db.ref(`${ROOT}/meals`).on('value', s => { renderMeals(s.val()); setSyncStatus('live'); });
-  db.ref(`${ROOT}/groceries/sams`).on('value', s => { renderGroceryStore(s.val(),'sams'); setSyncStatus('live'); });
-  db.ref(`${ROOT}/groceries/target`).on('value', s => { renderGroceryStore(s.val(),'target'); setSyncStatus('live'); });
-  db.ref(`${ROOT}/groceries/walmart`).on('value', s => { renderGroceryStore(s.val(),'walmart'); setSyncStatus('live'); });
-  db.ref(`${ROOT}/quinn`).on('value', s => { renderKid(s.val(),'quinn','quinn-list'); setSyncStatus('live'); });
-  db.ref(`${ROOT}/jack`).on('value', s => { renderKid(s.val(),'jack','jack-list'); setSyncStatus('live'); });
-  db.ref(`${ROOT}/notes`).on('value', s => { renderNotes(s.val()); setSyncStatus('live'); });
+function startListeners(){
+  db.ref(`${ROOT}/tasks`).on('value',s=>{renderTasks(s.val());setSyncStatus('live');});
+  db.ref(`${ROOT}/events`).on('value',s=>{renderEvents(s.val());setSyncStatus('live');});
+  db.ref(`${ROOT}/meals`).on('value',s=>{renderMeals(s.val());setSyncStatus('live');});
+  db.ref(`${ROOT}/groceries/sams`).on('value',s=>{renderGroceryStore(s.val(),'sams');setSyncStatus('live');});
+  db.ref(`${ROOT}/groceries/target`).on('value',s=>{renderGroceryStore(s.val(),'target');setSyncStatus('live');});
+  db.ref(`${ROOT}/groceries/walmart`).on('value',s=>{renderGroceryStore(s.val(),'walmart');setSyncStatus('live');});
+  db.ref(`${ROOT}/quinn`).on('value',s=>{renderKid(s.val(),'quinn','quinn-list');setSyncStatus('live');});
+  db.ref(`${ROOT}/jack`).on('value',s=>{renderKid(s.val(),'jack','jack-list');setSyncStatus('live');});
+  db.ref(`${ROOT}/recipes`).on('value',s=>{_recipesCache=s.val()||{};renderRecipes(_recipesCache);setSyncStatus('live');});
+  db.ref(`${ROOT}/notes`).on('value',s=>{renderNotes(s.val());setSyncStatus('live');});
 }
 </script>
 </body>
